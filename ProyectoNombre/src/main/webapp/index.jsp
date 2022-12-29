@@ -7,5 +7,7 @@
 <a href="pagina4.xhtml">pagina 4</a>
 <br>
 <a href="pagina5.xhtml">pagina 5</a>
+<br>
+<a href="paginaProbandoAjax1.xhtml">pruebas con ajax</a>
 </body>
 </html>

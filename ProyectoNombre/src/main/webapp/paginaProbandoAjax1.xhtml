@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+</h:head>
+<body>
+
+	<h:form>
+		<h:outputText value="Ingrese informacion" />
+		<br />
+		<br />
+		<h:inputText id="txt_1_in" value="#{probandoAjax1.informacion}" />
+		<br />
+		<br />
+		<h:commandButton value="Enviar informacion">
+			<!-- en execute va el id del atributo que vamos a enviar al servidor  -->
+			<!-- en render va el atr donde va a ser refrescada o redibujada la respuesta -->
+			<!-- event="keyup" se utiliza para que la info sea mandada cada vez que una tecla es presionada  -->
+			<f:ajax execute="txt_1_in" render="txt_1_out" />
+		</h:commandButton>
+		<br />
+		<br />
+		<h:inputText id="txt_1_out" value="#{probandoAjax1.informacion}" />
+	</h:form>
+	<br />
+	<br />
+	<br />
+	<h:form>
+		<h:outputText value="Ingrese informacion con delay de 500ms" />
+		<br />
+		<br />
+		<h:inputText id="txt_2_in" value="#{probandoAjax1.informacion2}">
+			<br />
+			<br />
+			<!-- event="keyup" se utiliza para que la info sea mandada cada vez que una tecla es presionada  -->
+
+			<!-- para que el ajax funcione en este caso la etiqueta <f:ajax> tiene que estar contenida dentro del inputText  -->
+			<f:ajax event="keyup" delay="500"  execute="txt_2_in" render="txt_2_out" />
+		</h:inputText>
+
+		<br />
+		<br />
+		<h:inputText id="txt_2_out" value="#{probandoAjax1.informacion2}" />
+
+	</h:form>
+
+</body>
+</html>
