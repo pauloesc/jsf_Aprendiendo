@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+<h:form>
+	<!-- onchange indica que cuando se seleccione una opcion se tiene que hacer los cambios -->
+	<!-- en valueChangeListener se indica la funcion que realiza la accion necesaria  -->
+	<h1><h:outputText value="#{msg.saludo}" /></h1>
+	<h:selectOneMenu
+		value="#{pagina4Controlador.localidad}"
+		onchange="submit()"
+		valueChangeListener="#{pagina4Controlador.localidadCambiando}">
+
+		<f:selectItems value="#{pagina4Controlador.listaPaises}" />
+	</h:selectOneMenu>
+	</h:form>
+</body>
+</html>

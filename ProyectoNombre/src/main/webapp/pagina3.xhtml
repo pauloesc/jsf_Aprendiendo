@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:af="http://xmlns.jcp.org/jsp/jstl/core">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+
+		<h:outputLabel value="nombre" />
+		<br />
+		<!-- el valor en label tiene el mensaje a mostrar en caso de que el campo fuera enviado vacio -->
+		<h:inputText id="txtNombre" value="#{pagina3Controlador.persona.nombre}" required="true" label="Nombre requerido"/>
+		<!-- el mensaje de error del input se mostrara en la etiqueta message que en el atr for tenga el mismo valor que el input en el atr id --> 
+		<h:message for="txtNombre" />
+		<br />
+		
+		<h:outputLabel value="apellido" />
+		<br />
+		<h:inputText value="#{pagina3Controlador.persona.apellido}"/>
+		<br />
+		
+		<h:outputLabel value="edad" />
+		<br />
+		<!-- de esta maner no funciona 
+		<h:inputText id="numEdad" value="#{pagina3Controlador.persona.edad}" label="Edades entre 18 y 30" />
+		<f:validateLongRange for="numEdad" minimum="18" maximum="30" ></f:validateLongRange>
+		<h:message for="numEdad" />
+		-->
+		<h:inputText id="numEdad" value="#{pagina3Controlador.persona.edad}" label="Edades entre 18 y 30" >
+		<f:validateLongRange for="numEdad" minimum="18" maximum="30" ></f:validateLongRange>
+		</h:inputText>
+		<h:message for="numEdad" />
+		<br />
+		<h:outputLabel value="sexo" />
+		<br />
+		<h:selectOneMenu value="#{pagina3Controlador.persona.sexo}">
+			<f:selectItem itemValue="M" itemLabel="Masculino" />
+			<f:selectItem itemValue="F" itemLabel="Femenino" />
+		</h:selectOneMenu>
+		<br />
+		
+		<h:outputLabel value="colorOjos"/>
+		<br />
+		<!-- cuando se llama la la funcion que comprueba se hace sin los parentesis...no se hace  pagina3Controlador.validarOjos() -->
+		<h:inputText id="ojos" value="#{pagina3Controlador.persona.colorOjos}" validator="#{pagina3Controlador.validarOjos}"/>
+		<h:message for="ojos"/>
+		<br />
+		
+		<h:outputLabel value="suma (5 + 5) "/>
+		<br />
+		<h:inputText id="suma">
+		<f:validator validatorId="validadorDeSumaCorrecta" />
+		</h:inputText>
+		<h:message for="suma"/>
+		
+		<br />
+		<br />
+				
+		<h:commandButton actionListener="#{pagina3Controlador.cargarPersona()}" value="Agregar persona" />
+		<br />
+		
+		<!-- immediate="true" permite saltar el proceso de validacion -->
+		<h:commandButton actionListener="#{pagina3Controlador.cargarPersona()}" value="Agregar persona sin validar datos" immediate="true" />
+
+
+	</h:form>
+
+
+<h:form>
+	<h:dataTable value="#{pagina3Controlador.listaPersonas}" var="pEnLista" rendered="#{pagina3Controlador.listaPersonas.size() > 0}">
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Nombre" />
+			</f:facet>
+
+			<h:outputText value="#{pEnLista.nombre}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Apellido" />
+			</f:facet>
+			<h:outputText value="#{pEnLista.apellido}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Edad" />
+			</f:facet>
+			<h:outputText value="#{pEnLista.edad}" />
+		</h:column>
+
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Sexo" />
+			</f:facet>
+			<h:outputText value="#{pEnLista.sexo}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">
+				<h:outputLabel value="Ojos color" />
+			</f:facet>
+			<h:outputText value="#{pEnLista.colorOjos}" />
+		</h:column>
+		
+		<h:column>
+		<f:facet name="header">
+				<h:outputLabel value="Eliminar" />
+			</f:facet>
+			<h:commandLink actionListener="#{pagina3Controlador.eliminarPersona(pEnLista)}" value="Eliminar" />
+		</h:column>
+
+	</h:dataTable>
+</h:form>
+
+	<p>--------------</p>
+	<af:forEach var="item" items="#{pagina3Controlador.listaPersonas}">
+		<p>#{item.nombre}</p>
+	</af:forEach>
+
+
+
+</body>
+</html>
