@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+		<h:outputLabel value="Pais" />
+		<br />
+		<h:selectOneMenu value="#{probandoAjax2.codigoPais}">
+			<f:selectItem itemLabel="peru" itemValue="1" />
+			<f:selectItem itemLabel="colombia" itemValue="2" />
+			<!-- el execute="@this" toma los datos cargados en selectOneMenu los envia -->
+			<f:ajax event="change" listener="#{probandoAjax2.cargarCiudades}"
+				render="CodC" execute="@this" />
+		</h:selectOneMenu>
+		<br />
+		<h:outputLabel value="Ciudad" />
+		<br />
+		<h:selectOneMenu id="CodC" value="#{probandoAjax2.codCiudad}">
+			<f:selectItems value="#{probandoAjax2.listaCiudades}" />
+		</h:selectOneMenu>
+
+	</h:form>
+
+</body>
+</html>

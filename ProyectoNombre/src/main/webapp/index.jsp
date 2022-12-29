@@ -9,5 +9,9 @@
 <a href="pagina5.xhtml">pagina 5</a>
 <br>
 <a href="paginaProbandoAjax1.xhtml">pruebas con ajax</a>
+<br>
+<a href="paginaProbandoAjax2.xhtml">pruebas con ajax y listas</a>
+<br>
+<a href="paginaProbandoAjax3.xhtml">pruebas con ajax y listas (avanzado)</a>
 </body>
 </html>
